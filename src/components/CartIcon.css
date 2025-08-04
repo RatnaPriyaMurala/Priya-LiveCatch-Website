@@ -1,0 +1,18 @@
+/* Add this CSS to your stylesheet or in a style tag within your component if using styled-components or similar */
+.cart-badge {
+  position: absolute;
+  top: -8px; /* Adjust position relative to the icon */
+  right: -8px; /* Adjust position relative to the icon */
+  background-color: red; /* Badge background color */
+  color: white; /* Badge text color */
+  border-radius: 50%; /* Makes the badge round */
+  padding: 2px 6px; /* Adjust padding for badge size */
+  font-size: 12px; /* Badge text size */
+  line-height: 1; /* Ensures text is centered vertically */
+  text-align: center;
+  min-width: 18px; /* Ensure badge is round even with single digit */
+  height: 18px; /* Ensure badge is round even with single digit */
+  display: flex; /* Use flexbox for centering content within the badge */
+  align-items: center;
+  justify-content: center;
+}
