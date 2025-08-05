@@ -13,7 +13,7 @@ import SearchResultsPage from './pages/SearchResultsPage';
 import SideDrawer from './components/SideDrawer';
 import CartIcon from './components/CartIcon';
 import HamburgerIcon from './components/HamburgerIcon';
-
+import Layout from "./components/Layout";
 // My Account pages
 import Profile from './pages/Profile';
 import TermsAndConditions from './pages/TermsAndConditions';
@@ -94,12 +94,19 @@ function App() {
       <Router>
         <Routes>
           {/* Splash Screen */}
+        <Route path="/" element={<Layout />}>
         
-          <Route path="/" element={<HomePage />} />
+           <Route index element={<HomePage />} />
           <Route path="/search/:query" element={<LayoutWithMenu><SearchResultsPage /></LayoutWithMenu>} />
 
           {/* Main Pages */}
           <Route path="/category" element={<LayoutWithMenu><CategoryPage /></LayoutWithMenu>} />
+          < Route
+  path="/orders"
+  element={<LayoutWithMenu><Orders orders={orders} /></LayoutWithMenu>}
+/>
+<Route path="/profile" element={<LayoutWithMenu><Profile /></LayoutWithMenu>} />
+           
           <Route path="/products/:categoryName" element={<LayoutWithMenu><ProductListPage /></LayoutWithMenu>} />
           <Route path="/product/:productName" element={<LayoutWithMenu><ProductDetail /></LayoutWithMenu>} />
           
@@ -112,15 +119,16 @@ function App() {
               </LayoutWithMenu>
             }
           />
+          </Route>
+          
 
           {/* ✅ Use saved orders here instead of [] */}
-          <Route
-            path="/orders"
-            element={<LayoutWithMenu><Orders orders={orders} /></LayoutWithMenu>}
-          />
-
+         < Route
+  path="/orders"
+  element={<LayoutWithMenu><Orders orders={orders} /></LayoutWithMenu>}
+/>
           {/* My Account Pages */}
-          <Route path="/profile" element={<LayoutWithMenu><Profile /></LayoutWithMenu>} />
+         
           <Route path="/terms" element={<LayoutWithMenu><TermsAndConditions /></LayoutWithMenu>} />
           <Route path="/privacy" element={<LayoutWithMenu><PrivacyPolicy /></LayoutWithMenu>} />
           <Route path="/notifications" element={<LayoutWithMenu><Notifications /></LayoutWithMenu>} />

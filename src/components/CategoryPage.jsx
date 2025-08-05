@@ -1,7 +1,7 @@
 // src/components/CategoryPage.jsx
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
-
+import Sidebar from "../components/Sidebar";
 const categories = [
   { name: 'Sea Fish', image: '/images/seafish.jpg' },
   { name: 'Fresh Water Fish', image: '/images/freshwaterfish.jpg' },
@@ -30,7 +30,14 @@ function CategoryPage() {
           zIndex: 100
         }}
       >
-        <h2 style={{ margin: 0 }}>Choose Your Category</h2>
+         <div style={{ display: "flex", width: "100%" }}>
+      <Sidebar />
+      <div style={{ flex: 1, padding: "20px" }}>
+        <h2>Our Fish Products</h2>
+        {/* your product list grid */}
+      </div>
+    </div>
+        <h2 style={{ margin: 0 }}>Our Special Items</h2>
       </div>
 
       {/* Hero Section with Categories */}
