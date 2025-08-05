@@ -5,6 +5,15 @@ import { useUser } from "../contexts/UserContext";
 function SideDrawer({ onClose }) {
   const { user, logout } = useUser();
   const navigate = useNavigate();
+  const categories = [
+  "Sea Fish",
+  "Fresh Water Fish",
+  "Live Fish",
+  "Prawns",
+  "Crabs",
+  "Kolkata Fish",
+];
+
 
   const handleLogout = () => {
     logout();
@@ -30,6 +39,17 @@ function SideDrawer({ onClose }) {
         <h3>{user?.name || "Guest User"}</h3>
         <p>{user?.email || "No Email"}</p>
       </div>
+      <div className="side-drawer">
+    <h3>Categories</h3>
+    <ul>
+      {categories.map((cat, i) => (
+        <li key={i} onClick={() => navigate(`/products/${cat}`)}>
+          {cat}
+        </li>
+      ))}
+    </ul>
+    <button onClick={() => navigate("/cart")}>View Cart</button>
+  </div>
 
       {/* Menu */}
       <nav style={{ display: "flex", flexDirection: "column", gap: "15px" }}>

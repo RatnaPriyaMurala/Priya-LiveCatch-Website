@@ -2,6 +2,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import Navbar from "../components/Navbar";
+import "./HomePage.css";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -19,27 +21,31 @@ function HomePage() {
   ];
 
   return (
-    <div>
+    <div style={{ backgroundColor: "#f9fafb" }}>
+      {/* ✅ Global Navbar */}
+      <Navbar />
+
       {/* ✅ Hero Section */}
       <section
         style={{
-          backgroundImage: "url('/images/Hero Background image.png')",
+          backgroundImage: "url('/images/HeroBackgroundImage.png')", // make sure the file is renamed without spaces
           backgroundSize: "cover",
           backgroundPosition: "center",
-          height: "90vh",
+          width: "100vw",
+          height: "100vh",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
           color: "white",
-          textAlign: "center",
+          textShadow: "2px 2px 8px rgba(0,0,0,0.6)",
         }}
       >
         <motion.h1
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          style={{ fontSize: "3rem", marginBottom: "20px", textShadow: "2px 2px 6px rgba(0,0,0,0.5)" }}
+          transition={{ duration: 0.8 }}
+          style={{ fontSize: "2.8rem", fontWeight: "700", textAlign: "center" }}
         >
           Fresh Live Fish Delivered to You
         </motion.h1>
@@ -49,44 +55,31 @@ function HomePage() {
           transition={{ delay: 0.5, type: "spring", stiffness: 120 }}
           onClick={() => navigate("/category")}
           style={{
-            padding: "15px 35px",
-            fontSize: "1.2rem",
-            backgroundColor: "#ff5722",
+            marginTop: "20px",
+            padding: "12px 25px",
+            backgroundColor: "#df581a",
             color: "white",
             border: "none",
-            borderRadius: "30px",
+            borderRadius: "8px",
+            fontSize: "1.2rem",
             cursor: "pointer",
-            boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
           }}
         >
           Shop Now
         </motion.button>
       </section>
 
-      {/* Wave Divider */}
-      <svg style={{ display: "block", marginTop: "-1px" }} viewBox="0 0 1440 320">
-        <path
-          fill="#f9f9f9"
-          d="M0,160L60,144C120,128,240,96,360,117.3C480,139,600,213,720,229.3C840,245,960,203,1080,181.3C1200,160,1320,160,1380,160L1440,160L1440,320L0,320Z"
-        ></path>
-      </svg>
-
       {/* ✅ Special Items */}
-      <section id="special-items" style={{ padding: "60px 20px", backgroundColor: "#f9f9f9" }}>
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          style={{ textAlign: "center", marginBottom: "40px", color: "#0077b6", fontSize: "2rem" }}
-        >
+      <section style={{ padding: "60px 20px" }}>
+        <h2 style={{ textAlign: "center", marginBottom: "30px", color: "#0077b6" }}>
           Our Special Items
-        </motion.h2>
+        </h2>
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-            gap: "30px",
-            maxWidth: "1200px",
+            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+            gap: "25px",
+            maxWidth: "1100px",
             margin: "0 auto",
           }}
         >
@@ -94,18 +87,16 @@ function HomePage() {
             <motion.div
               key={idx}
               onClick={() => navigate(cat.link)}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.1, duration: 0.5 }}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
               style={{
                 backgroundColor: "white",
-                borderRadius: "15px",
+                borderRadius: "12px",
                 textAlign: "center",
                 padding: "15px",
-                boxShadow: "0px 4px 10px rgba(0,0,0,0.1)",
+                boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
                 cursor: "pointer",
               }}
-              whileHover={{ scale: 1.05 }}
             >
               <img
                 src={cat.icon}
@@ -113,15 +104,32 @@ function HomePage() {
                 style={{
                   width: "100%",
                   height: "180px",
+                  borderRadius: "10px",
                   objectFit: "cover",
-                  borderRadius: "12px",
-                  marginBottom: "10px",
                 }}
               />
-              <h3 style={{ color: "#333" }}>{cat.name}</h3>
+              <h3 style={{ marginTop: "10px" }}>{cat.name}</h3>
             </motion.div>
           ))}
         </div>
+      </section>
+
+      {/* ✅ Why Choose Us */}
+      <section
+        style={{
+          backgroundColor: "#e6f7ff",
+          padding: "60px 20px",
+          textAlign: "center",
+        }}
+      >
+        <h2 style={{ marginBottom: "20px", color: "#0077b6" }}>
+          Why Choose Priya Live Catch?
+        </h2>
+        <p style={{ fontSize: "1.2rem", maxWidth: "700px", margin: "0 auto" }}>
+          We bring you the freshest live fish, hygienically handled and delivered straight
+          to your home at affordable prices. Experience the taste of the ocean and rivers
+          right at your doorstep.
+        </p>
       </section>
     </div>
   );

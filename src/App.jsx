@@ -14,6 +14,7 @@ import SideDrawer from './components/SideDrawer';
 import CartIcon from './components/CartIcon';
 import HamburgerIcon from './components/HamburgerIcon';
 import Layout from "./components/Layout";
+import Navbar from "./components/Navbar";
 // My Account pages
 import Profile from './pages/Profile';
 import TermsAndConditions from './pages/TermsAndConditions';
@@ -93,52 +94,34 @@ function App() {
     <CartProvider>
       <Router>
         <Routes>
-          {/* Splash Screen */}
-        <Route path="/" element={<Layout />}>
-        
-           <Route index element={<HomePage />} />
-          <Route path="/search/:query" element={<LayoutWithMenu><SearchResultsPage /></LayoutWithMenu>} />
+  {/* Home without sidebar */}
+  <Route index element={<HomePage />} />
 
-          {/* Main Pages */}
-          <Route path="/category" element={<LayoutWithMenu><CategoryPage /></LayoutWithMenu>} />
-          < Route
-  path="/orders"
-  element={<LayoutWithMenu><Orders orders={orders} /></LayoutWithMenu>}
-/>
-<Route path="/profile" element={<LayoutWithMenu><Profile /></LayoutWithMenu>} />
-           
-          <Route path="/products/:categoryName" element={<LayoutWithMenu><ProductListPage /></LayoutWithMenu>} />
-          <Route path="/product/:productName" element={<LayoutWithMenu><ProductDetail /></LayoutWithMenu>} />
-          
-          {/* ✅ Pass setOrders into CartPage */}
-          <Route
-            path="/cart"
-            element={
-              <LayoutWithMenu>
-                <CartPage onOrder={(order) => setOrders(prev => [order, ...prev])} />
-              </LayoutWithMenu>
-            }
-          />
-          </Route>
-          
+  {/* Pages with sidebar */}
+  <Route path="/search/:query" element={<LayoutWithMenu><SearchResultsPage /></LayoutWithMenu>} />
+  <Route path="/category" element={<LayoutWithMenu><CategoryPage /></LayoutWithMenu>} />
+  <Route path="/orders" element={<LayoutWithMenu><Orders orders={orders} /></LayoutWithMenu>} />
+  <Route path="/profile" element={<LayoutWithMenu><Profile /></LayoutWithMenu>} />
+  <Route path="/products/:categoryName" element={<LayoutWithMenu><ProductListPage /></LayoutWithMenu>} />
+  <Route path="/product/:productName" element={<LayoutWithMenu><ProductDetail /></LayoutWithMenu>} />
+  <Route path="/cart" element={
+    <LayoutWithMenu>
+      <CartPage onOrder={(order) => setOrders(prev => [order, ...prev])} />
+    </LayoutWithMenu>
+  } />
+  
+  {/* My Account Pages */}
+  <Route path="/terms" element={<LayoutWithMenu><TermsAndConditions /></LayoutWithMenu>} />
+  <Route path="/privacy" element={<LayoutWithMenu><PrivacyPolicy /></LayoutWithMenu>} />
+  <Route path="/notifications" element={<LayoutWithMenu><Notifications /></LayoutWithMenu>} />
+  <Route path="/favourites" element={<LayoutWithMenu><Favourites /></LayoutWithMenu>} />
+  <Route path="/saved" element={<LayoutWithMenu><Saved /></LayoutWithMenu>} />
+  <Route path="/edit" element={<LayoutWithMenu><EditProfile /></LayoutWithMenu>} />
+  <Route path="/transactions" element={<LayoutWithMenu><MyTransactions /></LayoutWithMenu>} />
+  <Route path="/changelanguage" element={<LayoutWithMenu><ChangeLanguage /></LayoutWithMenu>} />
+  <Route path="/logout" element={<LayoutWithMenu><Logout /></LayoutWithMenu>} />
+</Routes>
 
-          {/* ✅ Use saved orders here instead of [] */}
-         < Route
-  path="/orders"
-  element={<LayoutWithMenu><Orders orders={orders} /></LayoutWithMenu>}
-/>
-          {/* My Account Pages */}
-         
-          <Route path="/terms" element={<LayoutWithMenu><TermsAndConditions /></LayoutWithMenu>} />
-          <Route path="/privacy" element={<LayoutWithMenu><PrivacyPolicy /></LayoutWithMenu>} />
-          <Route path="/notifications" element={<LayoutWithMenu><Notifications /></LayoutWithMenu>} />
-          <Route path="/favourites" element={<LayoutWithMenu><Favourites /></LayoutWithMenu>} />
-          <Route path="/saved" element={<LayoutWithMenu><Saved /></LayoutWithMenu>} />
-          <Route path="/edit" element={<LayoutWithMenu><EditProfile /></LayoutWithMenu>} />
-          <Route path="/transactions" element={<LayoutWithMenu><MyTransactions /></LayoutWithMenu>} />
-          <Route path="/changelanguage" element={<LayoutWithMenu><ChangeLanguage /></LayoutWithMenu>} />
-          <Route path="/logout" element={<LayoutWithMenu><Logout /></LayoutWithMenu>} />
-        </Routes>
       </Router>
     </CartProvider>
   );
